@@ -10,6 +10,7 @@ use Dhl\Express\Webservice\Soap\Type\Common\Billing\ShippingPaymentType;
 use Dhl\Express\Webservice\Soap\Type\Common\Content;
 use Dhl\Express\Webservice\Soap\Type\Common\DropOffType;
 use Dhl\Express\Webservice\Soap\Type\Common\PaymentInfo;
+use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\LabelTemplate;
 
 /**
  * Shipment Details.
@@ -63,7 +64,20 @@ class ShipmentDetails implements ShipmentDetailsInterface
     const SHIPPING_PAYMENT_TYPE_R = ShippingPaymentType::R;
     const SHIPPING_PAYMENT_TYPE_S = ShippingPaymentType::S;
     const SHIPPING_PAYMENT_TYPE_T = ShippingPaymentType::T;
-
+    
+    /**
+     * Label Templates
+     */
+    const LABEL_TEMPLATE_ECOM26_84_A4_001 = 'ECOM26_84_A4_001';
+    const LABEL_TEMPLATE_ECOM26_84_001 = 'ECOM26_84_001';
+    const LABEL_TEMPLATE_ECOM_TC_A4 = 'ECOM_TC_A4';
+    const LABEL_TEMPLATE_ECOM26_A6_001 = 'ECOM26_A6_001';
+    const LABEL_TEMPLATE_ECOM26_84CI_001 = 'ECOM26_84CI_001';
+    const LABEL_TEMPLATE_ECOM_A4_RU_002 = 'ECOM_A4_RU_002';
+    const LABEL_TEMPLATE_ECOM26_A6_002 = 'ECOM26_A6_002';
+    const LABEL_TEMPLATE_ECOM26_84CI_002 = 'ECOM26_84CI_002';
+    const LABEL_TEMPLATE_ECOM26_84CI_003 = 'ECOM26_84CI_003';
+    
     /**
      * Whether this is a scheduled pickup or not.
      *
@@ -126,6 +140,33 @@ class ShipmentDetails implements ShipmentDetailsInterface
      * @var string
      */
     private $serviceType;
+    
+    /**
+     * The LabelTemplate
+     *
+     * @var string
+     */
+    private $labelTemplate;
+    
+    /**
+     * @return string
+     */
+    public function getLabelTemplate(): string
+    {
+        return $this->labelTemplate;
+    }
+    
+    /**
+     * @param string $labelTemplate
+     *
+     * @return ShipmentDetails
+     */
+    public function setLabelTemplate(string $labelTemplate): ShipmentDetails
+    {
+        $this->labelTemplate = $labelTemplate;
+        
+        return $this;
+    }
 
     /**
      * ShipmentDetails constructor.

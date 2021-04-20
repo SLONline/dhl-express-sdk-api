@@ -62,6 +62,9 @@ class ShipmentRequestMapper
             $request->getShipmentDetails()->getCurrencyCode(),
             $this->mapUOM($weightUOM, $dimensionsUOM)
         );
+        if ($request->getShipmentDetails()->getLabelTemplate()) {
+            $shipmentInfo->setLabelTemplate($request->getShipmentDetails()->getLabelTemplate());
+        }
         
         // Create ship
         $ship = new Ship(
