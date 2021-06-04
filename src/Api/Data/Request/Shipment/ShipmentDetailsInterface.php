@@ -5,6 +5,9 @@
 
 namespace Dhl\Express\Api\Data\Request\Shipment;
 
+use Dhl\Express\Webservice\Soap\Type\Common\SpecialServices;
+use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\DocumentImages;
+
 /**
  * Shipment Details Interface.
  *
@@ -83,4 +86,37 @@ interface ShipmentDetailsInterface
      * @return string
      */
     public function getServiceType();
+    
+    /**
+     * Paperless Trade Enabled
+     *
+     * @return null|bool
+     */
+    public function getPaperlessTradeEnabled();
+    
+    /**
+     * Document Images
+     *
+     * @return DocumentImages
+     */
+    public function getDocumentImages();
+    
+    /**
+     * @param DocumentImages $documentImages
+     *
+     * @return self
+     */
+    public function setDocumentImages(DocumentImages $documentImages);
+    
+    /**
+     * @return SpecialServices
+     */
+    public function getSpecialServices();
+    
+    /**
+     * @param SpecialServices $specialServices
+     *
+     * @return self
+     */
+    public function setSpecialServices(SpecialServices $specialServices);
 }

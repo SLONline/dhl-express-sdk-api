@@ -88,6 +88,13 @@ class RequestedShipment
      * @var null|ShipmentNotifications
      */
     private $ShipmentNotifications;
+    
+    /**
+     * Paperless Trade Enabled
+     *
+     * @var bool
+     */
+    private $PaperlessTradeEnabled;
 
     /**
      * Constructor.

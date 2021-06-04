@@ -66,6 +66,10 @@ class ShipmentRequestMapper
             $shipmentInfo->setLabelTemplate($request->getShipmentDetails()->getLabelTemplate());
         }
         
+        $shipmentInfo->setPaperlessTradeEnabled($request->getShipmentDetails()->getPaperlessTradeEnabled());
+        
+        $shipmentInfo->setDocumentImages($request->getShipmentDetails()->getDocumentImages());
+        
         // Create ship
         $ship = new Ship(
             new Ship\ContactInfo(
@@ -169,6 +173,10 @@ class ShipmentRequestMapper
         );
         
         $specialServicesList = [];
+        if ($request->getShipmentDetails()->getPaperlessTradeEnabled()) {
+            $specialServicesList[] = new Service('WY');
+        }
+        
         if ($insurance = $request->getInsurance()) {
             $insuranceService = new Service(SpecialServices\ServiceType::TYPE_INSURANCE);
             $insuranceService->setServiceValue($insurance->getValue());

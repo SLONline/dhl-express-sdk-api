@@ -38,7 +38,7 @@ class ServiceType implements ValueInterface
      */
     public function __construct($value)
     {
-        if (\strlen($value) !== self::NUMBER_OF_CHARS) {
+        if (\strlen($value) > self::NUMBER_OF_CHARS) {
             throw new \InvalidArgumentException('The argument must be a two letter service type');
         }
 

@@ -1785,8 +1785,8 @@
 		<xsd:annotation>
 			<xsd:documentation>To support multiple custom invoice an support document images</xsd:documentation>
 		</xsd:annotation>
-		<xsd:sequence maxOccurs="1000">
-			<xsd:element name="DocumentImage">
+		<xsd:sequence>
+			<xsd:element maxOccurs="1000" name="DocumentImage">
 				<xsd:complexType>
 					<xsd:sequence>
 						<xsd:element minOccurs="0" name="DocumentImageType" type="tns:DocumentImageType"/>

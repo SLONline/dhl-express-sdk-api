@@ -10,6 +10,7 @@ use Dhl\Express\Webservice\Soap\Type\Common\DropOffType;
 use Dhl\Express\Webservice\Soap\Type\Common\SpecialServices;
 use Dhl\Express\Webservice\Soap\Type\Common\UnitOfMeasurement;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\Account;
+use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\DocumentImages;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\LabelTemplate;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\LabelType;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo\PackagesCount;
@@ -167,6 +168,31 @@ class ShipmentInfo
      * @var null|string
      */
     private $PaperlessTradeImage;
+    
+    /**
+     * @var null|DocumentImages
+     */
+    private $DocumentImages;
+    
+    /**
+     * @return DocumentImages|null
+     */
+    public function getDocumentImages(): ?DocumentImages
+    {
+        return $this->DocumentImages;
+    }
+    
+    /**
+     * @param DocumentImages|null $DocumentImages
+     *
+     * @return ShipmentInfo
+     */
+    public function setDocumentImages(?DocumentImages $DocumentImages): ShipmentInfo
+    {
+        $this->DocumentImages = $DocumentImages;
+        
+        return $this;
+    }
 
     /**
      * Constructor.
