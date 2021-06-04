@@ -5,7 +5,6 @@
 
 namespace Dhl\Express\Webservice\Soap\TypeMapper;
 
-use Debug;
 use Dhl\Express\Api\Data\Request\ExportItemInterface;
 use Dhl\Express\Api\Data\Request\PackageInterface;
 use Dhl\Express\Api\Data\Request\Shipment\LabelOptionsInterface;
@@ -27,6 +26,7 @@ use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\RequestedShipment;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\Ship;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\Ship\Address;
 use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentInfo;
+use Dhl\Express\Webservice\Soap\Type\ShipmentRequest\ShipmentNotifications;
 use Dhl\Express\Webservice\Soap\Type\SoapShipmentRequest;
 
 /**
@@ -201,6 +201,22 @@ class ShipmentRequestMapper
                 new LabelOptions(
                     new LabelOptions\RequestWaybillDocument($labelOptions->isWaybillDocumentRequested())
                 )
+            );
+        }
+    
+        $notifications = $request->getNotifications();
+        if (\is_array($notifications) && \count($notifications) > 0) {
+            $shipmentNotifications = [];
+            foreach ($notifications as $notification) {
+                $shipmentNotifications[] = new ShipmentNotifications\ShipmentNotification(
+                    $notification->getNotificationMethod(),
+                    $notification->getEmailAddress(),
+                    $notification->getBespokeMessage(),
+                    $notification->getLanguageCode()
+                );
+            }
+            $requestedShipment->setShipmentNotifications(
+                new ShipmentNotifications($shipmentNotifications)
             );
         }
         

@@ -14,6 +14,7 @@ use Dhl\Express\Api\Data\Request\Shipment\ShipmentDetailsInterface;
 use Dhl\Express\Api\Data\Request\Shipment\ShipperInterface;
 use Dhl\Express\Api\Data\ShipmentRequestInterface;
 use Dhl\Express\Model\Request\ExportItem;
+use Dhl\Express\Model\Request\Notification;
 use Dhl\Express\Model\Request\Recipient;
 use Dhl\Express\Model\Request\Shipment\Shipper;
 
@@ -76,6 +77,11 @@ class ShipmentRequest implements ShipmentRequestInterface
     private $exportItems;
     
     /**
+     * @var Notification[]
+     */
+    private $notifications;
+    
+    /**
      * SoapShipmentRequest constructor.
      *
      * @param ShipmentDetailsInterface $shipmentDetails
@@ -114,6 +120,26 @@ class ShipmentRequest implements ShipmentRequestInterface
     public function setExportItems(array $exportItems): ShipmentRequest
     {
         $this->exportItems = $exportItems;
+        
+        return $this;
+    }
+    
+    /**
+     * @return Notification[]
+     */
+    public function getNotifications(): array
+    {
+        return $this->notifications;
+    }
+    
+    /**
+     * @param Notification[] $notifications
+     *
+     * @return ShipmentRequest
+     */
+    public function setNotifications(array $notifications): ShipmentRequest
+    {
+        $this->notifications = $notifications;
         
         return $this;
     }

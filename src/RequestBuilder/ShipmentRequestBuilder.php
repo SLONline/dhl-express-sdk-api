@@ -9,6 +9,7 @@ use Dhl\Express\Api\Data\ShipmentRequestInterface;
 use Dhl\Express\Api\ShipmentRequestBuilderInterface;
 use Dhl\Express\Model\Request\ExportItem;
 use Dhl\Express\Model\Request\Insurance;
+use Dhl\Express\Model\Request\Notification;
 use Dhl\Express\Model\Request\Package;
 use Dhl\Express\Model\Request\Recipient;
 use Dhl\Express\Model\Request\Shipment\DangerousGoods\DryIce;
@@ -158,8 +159,8 @@ class ShipmentRequestBuilder implements ShipmentRequestBuilderInterface
         string $city,
         array $streetLines,
         string $name,
-        string $company,
-        string $phone,
+        string $company = null,
+        string $phone = null,
         string $email = null
     ): ShipmentRequestBuilderInterface {
         $this->data['recipient'] = [
@@ -388,6 +389,29 @@ class ShipmentRequestBuilder implements ShipmentRequestBuilderInterface
         return $this;
     }
     
+    /**
+     * Add notification
+     * @param string      $emailAddress Email address of the party to receive email notification.
+     * @param string|null $bespokeMessage Additional message to be added to the body of the mail
+     * @param string|null $languageCode LanguageCode used in the email content. (- eng, (Default) - eng, British - zho, Chinese Traditional - chi, Chinese Simplified)
+     *
+     * @return ShipmentRequestBuilderInterface
+     */
+    public function addNotification(
+        string $emailAddress,
+        string $bespokeMessage = null,
+        string $languageCode = null
+    ): ShipmentRequestBuilderInterface {
+        $this->data['notifications'][] = [
+            'NotificationMethod'  => 'EMAIL',
+            'EmailAddress'        => $emailAddress,
+            'BespokeMessage'      => $bespokeMessage,
+            'LanguageCode'        => $languageCode
+        ];
+        
+        return $this;
+    }
+    
     public function build(): ShipmentRequestInterface
     {
         // Build shipment details
@@ -505,6 +529,19 @@ class ShipmentRequestBuilder implements ShipmentRequestBuilderInterface
                 );
             }
             $request->setExportItems($exportItems);
+        }
+    
+        $notifications = [];
+        if (\array_key_exists('notifications', $this->data) && \is_array($this->data['notifications'])) {
+            foreach ($this->data['notifications'] as $item) {
+                $notifications[] = new Notification(
+                    $item['NotificationMethod'],
+                    $item['EmailAddress'],
+                    $item['BespokeMessage'],
+                    $item['LanguageCode']
+                );
+            }
+            $request->setNotifications($notifications);
         }
         $this->data = [];
         

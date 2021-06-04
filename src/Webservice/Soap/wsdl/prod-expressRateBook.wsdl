@@ -2205,8 +2205,8 @@
 		</xsd:restriction>
 	</xsd:simpleType>
 	<xsd:complexType name="docTypeRef_ShipmentNotifications">
-		<xsd:sequence maxOccurs="5">
-			<xsd:element name="ShipmentNotification" type="tns:docTypeRef_ShipmentNotification"/>
+		<xsd:sequence>
+			<xsd:element maxOccurs="5" name="ShipmentNotification" type="tns:docTypeRef_ShipmentNotification"/>
 		</xsd:sequence>
 	</xsd:complexType>
 	<xsd:complexType name="docTypeRef_ShipmentNotification">

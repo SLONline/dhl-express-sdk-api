@@ -83,6 +83,11 @@ class RequestedShipment
      * @var null|DangerousGoods
      */
     private $DangerousGoods;
+    
+    /**
+     * @var null|ShipmentNotifications
+     */
+    private $ShipmentNotifications;
 
     /**
      * Constructor.
@@ -362,6 +367,23 @@ class RequestedShipment
     public function setDangerousGoods(DangerousGoods $dangerousGoods)
     {
         $this->DangerousGoods = $dangerousGoods;
+        return $this;
+    }
+    
+    public function getShipmentNotifications()
+    {
+        return $this->ShipmentNotifications;
+    }
+    
+    /**
+     * @param null|ShipmentNotifications $shipmentNotifications
+     *
+     * @return self
+     */
+    public function setShipmentNotifications($shipmentNotifications)
+    {
+        $this->ShipmentNotifications = $shipmentNotifications;
+        
         return $this;
     }
 }

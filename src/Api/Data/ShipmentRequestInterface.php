@@ -13,6 +13,7 @@ use Dhl\Express\Api\Data\Request\Shipment\DangerousGoods\DryIceInterface;
 use Dhl\Express\Api\Data\Request\Shipment\LabelOptionsInterface;
 use Dhl\Express\Api\Data\Request\Shipment\ShipmentDetailsInterface;
 use Dhl\Express\Api\Data\Request\Shipment\ShipperInterface;
+use Dhl\Express\Model\Request\Notification;
 
 /**
  * Shipment Request Interface.
@@ -75,4 +76,9 @@ interface ShipmentRequestInterface
      * @return ExportItemInterface[]
      */
     public function getExportItems(): array;
+    
+    /**
+     * @return Notification[]
+     */
+    public function getNotifications(): array;
 }
