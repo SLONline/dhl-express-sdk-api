@@ -80,5 +80,5 @@ interface ShipmentRequestInterface
     /**
      * @return Notification[]
      */
-    public function getNotifications(): array;
+    public function getNotifications(): ?array;
 }

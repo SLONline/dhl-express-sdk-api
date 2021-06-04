@@ -127,7 +127,7 @@ class ShipmentRequest implements ShipmentRequestInterface
     /**
      * @return Notification[]
      */
-    public function getNotifications(): array
+    public function getNotifications(): ?array
     {
         return $this->notifications;
     }
