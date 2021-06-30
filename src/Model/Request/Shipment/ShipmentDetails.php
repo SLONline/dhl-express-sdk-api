@@ -225,7 +225,7 @@ class ShipmentDetails implements ShipmentDetailsInterface
     /**
      * @return DocumentImages
      */
-    public function getDocumentImages(): DocumentImages
+    public function getDocumentImages(): ?DocumentImages
     {
         return $this->documentImages;
     }
